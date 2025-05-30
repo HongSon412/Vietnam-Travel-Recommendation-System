@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Khuyến Nghị Du Lịch Việt Nam</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-map-marked-alt"></i> Chatbot Du Lịch Việt Nam</h1>
+            <p>Khám phá những địa điểm tuyệt vời dựa trên điều kiện thời tiết</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Chat Section -->
+            <div class="chat-section">
+                <div class="chat-header">
+                    <h2><i class="fas fa-comments"></i> Trò chuyện</h2>
+                    <button id="clearChat" class="btn-secondary">
+                        <i class="fas fa-trash"></i> Xóa lịch sử
+                    </button>
+                </div>
+                
+                <div id="chatContainer" class="chat-container">
+                    <div class="welcome-message">
+                        <div class="bot-message">
+                            <div class="message-content">
+                                <p>Xin chào! Tôi là chatbot tư vấn du lịch Việt Nam. 🇻🇳</p>
+                                <p>Hãy cho tôi biết bạn muốn đi du lịch vào thời gian nào và thích loại thời tiết như thế nào?</p>
+                                <p><strong>Ví dụ:</strong> "Tôi muốn đi du lịch tháng 11, thích khí hậu mát mẻ và ít mưa"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-section">
+                    <div class="input-group">
+                        <input type="text" id="messageInput" placeholder="Nhập tin nhắn của bạn..." maxlength="500">
+                        <button id="sendButton" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="quick-suggestions">
+                        <button class="suggestion-btn" data-message="Tôi muốn đi du lịch tháng 12, thích khí hậu mát mẻ">
+                            Tháng 12, khí hậu mát
+                        </button>
+                        <button class="suggestion-btn" data-message="Địa điểm ven biển, thời tiết nóng, tháng 6">
+                            Ven biển, tháng 6
+                        </button>
+                        <button class="suggestion-btn" data-message="Miền núi, ít mưa, khí hậu ôn hòa">
+                            Miền núi, ôn hòa
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-section">
+                <div class="map-header">
+                    <h2><i class="fas fa-map"></i> Bản đồ khuyến nghị</h2>
+                    <div class="map-controls">
+                        <button id="showAllLocations" class="btn-secondary">
+                            <i class="fas fa-globe"></i> Hiện tất cả
+                        </button>
+                        <button id="centerMap" class="btn-secondary">
+                            <i class="fas fa-crosshairs"></i> Về giữa
+                        </button>
+                    </div>
+                </div>
+                <div id="map" class="map-container"></div>
+                
+                <!-- Recommendations Panel -->
+                <div id="recommendationsPanel" class="recommendations-panel">
+                    <h3><i class="fas fa-star"></i> Địa điểm được khuyến nghị</h3>
+                    <div id="recommendationsList" class="recommendations-list">
+                        <p class="no-recommendations">Chưa có khuyến nghị nào. Hãy bắt đầu trò chuyện!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Đang xử lý yêu cầu...</p>
+            </div>
+        </div>
+
+        <!-- Location Details Modal -->
+        <div id="locationModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalLocationName"></h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="locationDetails"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
