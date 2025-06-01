@@ -101,7 +101,7 @@ Enter queries such as:
 ## 🔧 API Endpoints
 
 ### POST /chat
-Gửi tin nhắn đến chatbot
+Send a message to the chatbot
 
 **Request:**
 ```json
